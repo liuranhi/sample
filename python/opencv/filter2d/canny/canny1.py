@@ -3,8 +3,6 @@ import cv2
 import numpy as np
 
 # 畳み込み演算（空間フィルタリング）
-
-
 def filter2d(src, kernel, fill_value=-1):
     # カーネルサイズ
     m, n = kernel.shape
@@ -103,9 +101,11 @@ def canny_edge_detecter(gray, t_min, t_max, d):
     kernel_sx = np.array([[-1, 0, 1],
                           [-2, 0, 2],
                           [-1, 0, 1]])
+
     kernel_sy = np.array([[-1, -2, -1],
                           [0,  0, 0],
-                          [1,  2, 1]])
+                          [1, 2, 1]])
+                          
     Gx = filter2d(G, kernel_sx, 0)
     Gy = filter2d(G, kernel_sy, 0)
 
