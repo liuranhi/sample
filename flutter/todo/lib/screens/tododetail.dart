@@ -19,6 +19,7 @@ class TodoDetailState extends State<TodoDetail> {
   String _priority = "Low";
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
   bool isEdit;
   final _formKey = GlobalKey<FormState>();
 
@@ -52,22 +53,6 @@ class TodoDetailState extends State<TodoDetail> {
                   fontWeight: FontWeight.w600,
                   fontSize: 20.0,
                   color: Colors.white),
-            ),
-            SizedBox(
-              height: 40.0,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
-              child: Text(
-                "Fill the form below, plan something creative and worth doing. ",
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 15.0,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 30.0),
@@ -113,7 +98,8 @@ class TodoDetailState extends State<TodoDetail> {
                             contentPadding:
                                 EdgeInsets.symmetric(vertical: 15.0),
                             labelStyle: textStyle,
-                          )),
+                          )
+                      ),
                       TextFormField(
                           maxLength: 50,
                           onSaved: (value) {
@@ -127,7 +113,24 @@ class TodoDetailState extends State<TodoDetail> {
                             contentPadding:
                                 EdgeInsets.symmetric(vertical: 15.0),
                             labelStyle: textStyle,
-                          )),
+                          )
+                      ),
+                      // 日付欄
+                      TextFormField(
+                          maxLength: 50,
+                          onSaved: (value) {
+                            todo.date = value;
+                          },
+                          keyboardType: TextInputType.text,
+                          controller: dateController,
+                          style: textStyle,
+                          decoration: InputDecoration(
+                            hintText: 'Date',
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 15.0),
+                            labelStyle: textStyle,
+                          )
+                      ),
                       InputDecorator(
                         decoration: InputDecoration(
                           labelText: 'Priority',
@@ -147,8 +150,9 @@ class TodoDetailState extends State<TodoDetail> {
                           ),
                         ),
                       ),
+
                       SizedBox(
-                        height: 50.0,
+                        height: 20.0,
                       ),
                       RaisedButton(
                         shape: RoundedRectangleBorder(
@@ -220,7 +224,7 @@ class TodoDetailState extends State<TodoDetail> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      todo.date = new DateFormat.yMd().format(DateTime.now());
+      //todo.date = new DateFormat.yMd().format(DateTime.now());
       if (todo.id != null) {
         helper.updateTodo(todo);
       } else {
