@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Test App',
       theme: new ThemeData.dark(),
-      home:ListviewCardPage(title: 'Listview Card Page'),
-      //home: HomePage(title: 'Home Page'),
+      home: HomePage(title: 'Home Page'),
+      // home:ListviewCardPage(title: 'Listview Card Page'),
     );
   }
 }

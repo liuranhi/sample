@@ -15,15 +15,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Test'),),
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Padding(
-              child: Text('$index ：' + listItem[index], style: TextStyle(fontSize: 22.0),),
-              padding: EdgeInsets.all(20.0),),
-          );},
-        itemCount: listItem.length,),
+      appBar: new AppBar(
+        title: new Text('Page Title'),
+      ),
+      body: new Center(
+        child: new Text('Hello World'),
+      ),
     );
   }
 }
