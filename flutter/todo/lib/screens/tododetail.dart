@@ -19,10 +19,9 @@ class TodoDetailState extends State<TodoDetail> {
   String _priority = "Low";
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  TextEditingController yearController = TextEditingController();
   bool isEdit;
   final _formKey = GlobalKey<FormState>();
-  DateTime date;
 
   void initState() {
     super.initState();
@@ -102,30 +101,13 @@ class TodoDetailState extends State<TodoDetail> {
                           )
                       ),
 
-                      // 日2欄
                       TextFormField(
-                          maxLength: 50,
+                          maxLength: 4,
                           onSaved: (value) {
-                            todo.date = value;
+                            todo.year = value;
                           },
-                          keyboardType: TextInputType.text,
-                          controller: dateController,
-                          style: textStyle,
-                          decoration: InputDecoration(
-                            hintText: 'Year',
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 15.0),
-                            labelStyle: textStyle,
-                          )
-                      ),
-
-                      TextFormField(
-                          maxLength: 50,
-                          onSaved: (value) {
-                            todo.date = value;
-                          },
-                          keyboardType: TextInputType.text,
-                          controller: dateController,
+                          keyboardType: TextInputType.number,
+                          controller: yearController,
                           style: textStyle,
                           decoration: InputDecoration(
                             hintText: 'Year',
@@ -150,7 +132,7 @@ class TodoDetailState extends State<TodoDetail> {
                             }).toList(),
                             style: textStyle,
                             value: retrievePriority(todo.priority),
-                            onChanged: (value) => updatePriority(value),
+                            onChanged: (value) => upyearPriority(value),
                           ),
                         ),
                       ),
@@ -228,9 +210,9 @@ class TodoDetailState extends State<TodoDetail> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      // todo.date = new DateFormat.yMd().format(DateTime.now());
+      // todo.year = new yearFormat.yMd().format(yearTime.now());
       if (todo.id != null) {
-        helper.updateTodo(todo);
+        helper.upyearTodo(todo);
       } else {
         helper.insertTodo(todo);
       }
@@ -238,7 +220,7 @@ class TodoDetailState extends State<TodoDetail> {
     }
   }
 
-  void updatePriority(String value) {
+  void upyearPriority(String value) {
     switch (value) {
       case 'High':
         todo.priority = 1;
@@ -260,13 +242,13 @@ class TodoDetailState extends State<TodoDetail> {
     return _priorities[value - 1];
   }
 
-  void updateTitle() {
+  void upyearTitle() {
     setState(() {
       todo.title = titleController.text;
     });
   }
 
-  void updateDescription() {
+  void upyearDescription() {
     setState(() {
       todo.description = descriptionController.text;
     });

@@ -11,7 +11,7 @@ class DbHelper {
   String colTitle = "title";
   String colDescription = "description";
   String colPriority = "priority";
-  String colDate = "date";
+  String colyear = "year";
 
   DbHelper._internal();
 
@@ -38,7 +38,7 @@ class DbHelper {
   void _createDb(Database db, int newVersion) async {
     await db.execute(
       "CREATE TABLE $tblTodo($colId INTEGER PRIMARY KEY, $colTitle TEXT, " +
-        "$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)"
+        "$colDescription TEXT, $colPriority INTEGER, $colyear TEXT)"
     );
   }
 
@@ -62,7 +62,7 @@ class DbHelper {
     return result;
   }
 
-  Future<int> updateTodo(Todo todo) async {
+  Future<int> upyearTodo(Todo todo) async {
     var db = await this.db;
     var result = await db.update(tblTodo, todo.toMap(),
       where: "$colId = ?", whereArgs: [todo.id]);

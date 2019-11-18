@@ -2,17 +2,17 @@ class Todo {
   int _id;
   String _title;
   String _description;
-  String _date;
+  String _year;
   int _priority;
 
-  Todo(this._title, this._priority, this._date, [this._description]);
-  Todo.withId(this._id, this._title, this._priority, this._date, [this._description]);
+  Todo(this._title, this._priority, this._year, [this._description]);
+  Todo.withId(this._id, this._title, this._priority, this._year, [this._description]);
 
   int get id => _id;
   String get title => _title;
   String get description => _description;
   int get priority => _priority;
-  String get date => _date;
+  String get year => _year;
 
   set title(String newTitle) {
     if (newTitle.length <= 255) {
@@ -32,8 +32,8 @@ class Todo {
     }
   }
 
-  set date(String newDate) {
-    _date = newDate;
+  set year(String newyear) {
+    _year = newyear;
   }
 
   Map<String, dynamic> toMap(){
@@ -41,7 +41,7 @@ class Todo {
     map["title"] = _title;
     map["description"] = _description;
     map["priority"] = _priority;
-    map["date"] = _date;
+    map["year"] = _year;
     if(_id != null){
       map["id"] = _id;
     }
@@ -53,7 +53,7 @@ class Todo {
     this._title = o["title"];
     this._description = o["description"];
     this._priority = o["priority"];
-    this._date = o["date"];
+    this._year = o["year"];
   }
 
 }

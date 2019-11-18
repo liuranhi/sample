@@ -132,7 +132,7 @@ class TodoListState extends State {
                          height: 15.0,
                        ), // it smell
                        Text(
-                         'Created at ' + todos[position].date,
+                         'Created at ' + todos[position].year,
                          style: TextStyle(
                              fontSize: 11.0,
                              fontWeight: FontWeight.w600,
