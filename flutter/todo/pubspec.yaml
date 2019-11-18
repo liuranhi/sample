@@ -24,6 +24,7 @@ dependencies:
   sqflite: any
   path_provider: any
   intl: any
+  datetime_picker_formfield: 0.4.3
 
 dev_dependencies:
   flutter_test:

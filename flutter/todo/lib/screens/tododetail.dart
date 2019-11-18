@@ -22,6 +22,7 @@ class TodoDetailState extends State<TodoDetail> {
   TextEditingController dateController = TextEditingController();
   bool isEdit;
   final _formKey = GlobalKey<FormState>();
+  DateTime date;
 
   void initState() {
     super.initState();
@@ -42,36 +43,21 @@ class TodoDetailState extends State<TodoDetail> {
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      backgroundColor: Colors.indigoAccent,
+      appBar: AppBar(title: Text(isEdit ? "Edit the plan" : "Add the plan")),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
         child: Column(
           children: <Widget>[
-            Text(
-              isEdit ? "Edit the plan" : "Add the plan",
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20.0,
-                  color: Colors.white),
-            ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 30.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black38,
-                      blurRadius: 15.0,
-                      spreadRadius: -5.0,
-                      offset: Offset(0.0, 7.0)),
-                ],
+                //color: Colors.white,
               ),
               width: 320.0,
               height: 370.0,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 25.0, vertical: 0.0),
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
                 child: Form(
                   key: _formKey,
                   child: ListView(
@@ -96,7 +82,7 @@ class TodoDetailState extends State<TodoDetail> {
                           decoration: InputDecoration(
                             hintText: 'Title',
                             contentPadding:
-                                EdgeInsets.symmetric(vertical: 15.0),
+                                EdgeInsets.symmetric(vertical: 10.0),
                             labelStyle: textStyle,
                           )
                       ),
@@ -109,13 +95,14 @@ class TodoDetailState extends State<TodoDetail> {
                           controller: descriptionController,
                           style: textStyle,
                           decoration: InputDecoration(
-                            hintText: 'Specific content',
+                            hintText: 'Descript',
                             contentPadding:
                                 EdgeInsets.symmetric(vertical: 15.0),
                             labelStyle: textStyle,
                           )
                       ),
-                      // 日付欄
+
+                      // 日2欄
                       TextFormField(
                           maxLength: 50,
                           onSaved: (value) {
@@ -125,12 +112,29 @@ class TodoDetailState extends State<TodoDetail> {
                           controller: dateController,
                           style: textStyle,
                           decoration: InputDecoration(
-                            hintText: 'Date',
+                            hintText: 'Year',
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 15.0),
                             labelStyle: textStyle,
                           )
                       ),
+
+                      TextFormField(
+                          maxLength: 50,
+                          onSaved: (value) {
+                            todo.date = value;
+                          },
+                          keyboardType: TextInputType.text,
+                          controller: dateController,
+                          style: textStyle,
+                          decoration: InputDecoration(
+                            hintText: 'Year',
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 15.0),
+                            labelStyle: textStyle,
+                          )
+                      ),
+
                       InputDecorator(
                         decoration: InputDecoration(
                           labelText: 'Priority',
@@ -152,7 +156,7 @@ class TodoDetailState extends State<TodoDetail> {
                       ),
 
                       SizedBox(
-                        height: 20.0,
+                        height: 10.0,
                       ),
                       RaisedButton(
                         shape: RoundedRectangleBorder(
@@ -224,7 +228,7 @@ class TodoDetailState extends State<TodoDetail> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      //todo.date = new DateFormat.yMd().format(DateTime.now());
+      // todo.date = new DateFormat.yMd().format(DateTime.now());
       if (todo.id != null) {
         helper.updateTodo(todo);
       } else {
