@@ -20,14 +20,21 @@ class TodoDetailState extends State<TodoDetail> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController yearController = TextEditingController();
+  TextEditingController monthController = TextEditingController();
+  TextEditingController dayController = TextEditingController();
+
   bool isEdit;
   final _formKey = GlobalKey<FormState>();
+  DateTime date;
 
   void initState() {
     super.initState();
     isEdit = todo.title == '' ? false : true;
     titleController.text = todo.title;
     descriptionController.text = todo.description;
+    yearController.text = todo.year;
+    monthController.text = todo.month;
+    dayController.text = todo.day;
   }
 
   TodoDetailState(this.todo);
@@ -53,7 +60,7 @@ class TodoDetailState extends State<TodoDetail> {
                 //color: Colors.white,
               ),
               width: 320.0,
-              height: 370.0,
+              height: 470.0,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
@@ -100,23 +107,61 @@ class TodoDetailState extends State<TodoDetail> {
                             labelStyle: textStyle,
                           )
                       ),
-
-                      TextFormField(
-                          maxLength: 4,
-                          onSaved: (value) {
-                            todo.year = value;
-                          },
-                          keyboardType: TextInputType.number,
-                          controller: yearController,
-                          style: textStyle,
-                          decoration: InputDecoration(
-                            hintText: 'Year',
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 15.0),
-                            labelStyle: textStyle,
-                          )
+                      Row(children: <Widget>[
+                        Expanded(child: Container(
+                          child:                       // 年の入力欄
+                          TextFormField(
+                              maxLength: 4,
+                              onSaved: (value) {
+                                todo.year = value;
+                              },
+                              keyboardType: TextInputType.text,
+                              controller: yearController,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                hintText: '*年を入力',
+                                contentPadding:
+                                EdgeInsets.symmetric(vertical: 15.0),
+                                labelStyle: textStyle,
+                              )
+                          ),
+                        ),),
+                        Expanded(child: Container(
+                          child: TextFormField(
+                              maxLength: 2,
+                              onSaved: (value) {
+                                todo.month = value;
+                              },
+                              keyboardType: TextInputType.text,
+                              controller: monthController,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                hintText: '*月を入力',
+                                contentPadding:
+                                EdgeInsets.symmetric(vertical: 15.0),
+                                labelStyle: textStyle,
+                              )
+                          ),
+                        ),),
+                        Expanded(child: Container(
+                          child: TextFormField(
+                              maxLength: 2,
+                              onSaved: (value) {
+                                todo.day = value;
+                              },
+                              keyboardType: TextInputType.text,
+                              controller: dayController,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                hintText: '*日を入力',
+                                contentPadding:
+                                EdgeInsets.symmetric(vertical: 15.0),
+                                labelStyle: textStyle,
+                              )
+                          ),
+                        ),),
+                      ],
                       ),
-
                       InputDecorator(
                         decoration: InputDecoration(
                           labelText: 'Priority',
@@ -132,7 +177,7 @@ class TodoDetailState extends State<TodoDetail> {
                             }).toList(),
                             style: textStyle,
                             value: retrievePriority(todo.priority),
-                            onChanged: (value) => upyearPriority(value),
+                            onChanged: (value) => updatePriority(value),
                           ),
                         ),
                       ),
@@ -210,9 +255,9 @@ class TodoDetailState extends State<TodoDetail> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      // todo.year = new yearFormat.yMd().format(yearTime.now());
+      // todo.date = new DateFormat.yMd().format(DateTime.now());
       if (todo.id != null) {
-        helper.upyearTodo(todo);
+        helper.updateTodo(todo);
       } else {
         helper.insertTodo(todo);
       }
@@ -220,7 +265,7 @@ class TodoDetailState extends State<TodoDetail> {
     }
   }
 
-  void upyearPriority(String value) {
+  void updatePriority(String value) {
     switch (value) {
       case 'High':
         todo.priority = 1;
@@ -242,15 +287,33 @@ class TodoDetailState extends State<TodoDetail> {
     return _priorities[value - 1];
   }
 
-  void upyearTitle() {
+  void updateTitle() {
     setState(() {
       todo.title = titleController.text;
     });
   }
 
-  void upyearDescription() {
+  void updateDescription() {
     setState(() {
       todo.description = descriptionController.text;
+    });
+  }
+
+  void updateYear() {
+    setState(() {
+      todo.year = yearController.text;
+    });
+  }
+
+  void updateMonth() {
+    setState(() {
+      todo.month = monthController.text;
+    });
+  }
+
+  void updateDay() {
+    setState(() {
+      todo.day = dayController.text;
     });
   }
 }

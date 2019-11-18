@@ -11,7 +11,9 @@ class DbHelper {
   String colTitle = "title";
   String colDescription = "description";
   String colPriority = "priority";
-  String colyear = "year";
+  String colYear = "year";
+  String colMonth = "Month";
+  String colDay = "Day";
 
   DbHelper._internal();
 
@@ -35,10 +37,11 @@ class DbHelper {
     return dbTodos;
   }
 
+  // データベースの作成
   void _createDb(Database db, int newVersion) async {
     await db.execute(
       "CREATE TABLE $tblTodo($colId INTEGER PRIMARY KEY, $colTitle TEXT, " +
-        "$colDescription TEXT, $colPriority INTEGER, $colyear TEXT)"
+        "$colDescription TEXT, $colPriority INTEGER, $colYear TEXT, $colMonth TEXT, $colDay TEXT)"
     );
   }
 
@@ -62,7 +65,7 @@ class DbHelper {
     return result;
   }
 
-  Future<int> upyearTodo(Todo todo) async {
+  Future<int> updateTodo(Todo todo) async {
     var db = await this.db;
     var result = await db.update(tblTodo, todo.toMap(),
       where: "$colId = ?", whereArgs: [todo.id]);

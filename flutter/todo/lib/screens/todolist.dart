@@ -26,7 +26,7 @@ class TodoListState extends State {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigateToDetail(Todo('', 3, ''));
+            navigateToDetail(Todo('', 3, '', '', ''));
           },
           tooltip: "Add new Todo",
           child: new Icon(
@@ -131,13 +131,7 @@ class TodoListState extends State {
                        SizedBox(
                          height: 15.0,
                        ), // it smell
-                       Text(
-                         'Created at ' + todos[position].year,
-                         style: TextStyle(
-                             fontSize: 11.0,
-                             fontWeight: FontWeight.w600,
-                             color: Colors.black38),
-                       ),
+// date
                      ],
                    ),
                    contentPadding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 20.0),
