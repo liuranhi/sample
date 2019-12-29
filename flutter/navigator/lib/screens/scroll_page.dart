@@ -45,17 +45,18 @@ class _ScrollPageState extends State<ScrollPage> {
         items: [
           new BottomNavigationBarItem(
               icon: new Icon(Icons.home),
-              title: Text("ホーム")
+              title: Text("30px")
           ),
           new BottomNavigationBarItem(
               icon: new Icon(Icons.settings),
-              title: Text("設定")
+              title: Text("300px")
           ),
         ],
         // ナビゲーションバーのいずれかのボタンがタップされたら
         onTap: (int index) {
           print(index); // デバッグ用に出力（タップされたボタンによって数値がかわる）
           if(index == 0){
+            // 上から30pxまで移動
             controller.animateTo(
               30.0,
               curve: Curves.easeOut,
@@ -63,8 +64,9 @@ class _ScrollPageState extends State<ScrollPage> {
             );
           }
           else if(index == 1){
+            // 上から移動
             controller.animateTo(
-              0.0,
+              300.0,
               curve: Curves.easeOut,
               duration: const Duration(milliseconds: 300),
             );
