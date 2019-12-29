@@ -57,19 +57,11 @@ class _ScrollPageState extends State<ScrollPage> {
           print(index); // デバッグ用に出力（タップされたボタンによって数値がかわる）
           if(index == 0){
             // 上から30pxまで移動
-            controller.animateTo(
-              30.0,
-              curve: Curves.easeOut,
-              duration: const Duration(milliseconds: 300),
-            );
+            controller.animateTo(30.0, curve: Curves.easeOut, duration: const Duration(milliseconds: 300),);
           }
           else if(index == 1){
-            // 上から移動
-            controller.animateTo(
-              300.0,
-              curve: Curves.easeOut,
-              duration: const Duration(milliseconds: 300),
-            );
+            // 上から300pxまで移動
+            controller.animateTo(30.0, curve: Curves.easeOut, duration: const Duration(milliseconds: 300),);
           }
         },
       ),
