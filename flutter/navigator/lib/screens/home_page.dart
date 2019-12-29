@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      
+
       // ② 下部ナビゲーションバーでページ遷移
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
