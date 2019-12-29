@@ -10,7 +10,10 @@ class ScrollPage extends StatefulWidget {
 
 class _ScrollPageState extends State<ScrollPage> {
   int _currentIndex = 0; // currentIndexにデフォルト値を与えないとコンパイルエラー
+
+  // コントローラ
   final ScrollController controller = ScrollController();
+  
   var listItem = ["Savar", "Archer", "Lancer", "Rider", "Caster", "Assassin", "Berserker", "Ruler", "Avenger", "Alterego", "Mooncancer"];
 
   @override
@@ -20,7 +23,7 @@ class _ScrollPageState extends State<ScrollPage> {
         title: new Text('HomePage'),
       ),
       body: ListView.builder(
-        controller: controller,
+        controller: controller, // スクロールするエリアに入れる
         itemBuilder: (BuildContext context, int index) {
           return Container(
               decoration: BoxDecoration(
@@ -39,7 +42,7 @@ class _ScrollPageState extends State<ScrollPage> {
         itemCount: listItem.length,
       ),
 
-      // ② 下部ナビゲーションバーでページ遷移
+      // 下部ナビゲーションバーでスクロール
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         items: [
