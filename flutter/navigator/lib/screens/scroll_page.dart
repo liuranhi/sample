@@ -64,7 +64,7 @@ class _ScrollPageState extends State<ScrollPage> {
           }
           else if(index == 1){
             // 上から300pxまで移動
-            controller.animateTo(30.0, curve: Curves.easeOut, duration: const Duration(milliseconds: 300),);
+            controller.animateTo(300.0, curve: Curves.easeOut, duration: const Duration(milliseconds: 300),);
           }
         },
       ),
