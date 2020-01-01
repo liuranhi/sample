@@ -26,7 +26,7 @@ def sub_color(src, K):
     return res.reshape((src.shape))
 
 
-# 入力画像とスクリーントーン画像を取得
+# 入力画像を取得
 img = cv2.imread("C:/github/sample/python/opencv/equalize_hist/input.jpg")
 
 # 減色処理(三値化)
