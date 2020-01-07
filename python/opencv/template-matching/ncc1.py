@@ -14,7 +14,7 @@ temp = cv2.cvtColor(temp, cv2.COLOR_RGB2GRAY)
 h, w = temp.shape
 
 # テンプレートマッチング（OpenCVで実装）
-match = cv2.matchTemplate(gray, temp, cv2.TM_CCOEFF_NORMED)
+match = cv2.matchTemplate(gray, temp, cv2.TM_CCORR_NORMED)
 min_value, max_value, min_pt, max_pt = cv2.minMaxLoc(match)
 pt = max_pt
 

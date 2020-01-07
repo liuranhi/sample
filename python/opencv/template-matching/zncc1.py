@@ -20,4 +20,4 @@ pt = max_pt
 
 # テンプレートマッチングの結果を出力
 cv2.rectangle(img, (pt[0], pt[1]), (pt[0] + w, pt[1] + h), (0, 0, 200), 3)
-cv2.imwrite("C:/github/sample/python/opencv/template-matching/ncc1.png", img)
+cv2.imwrite("C:/github/sample/python/opencv/template-matching/zncc1.png", img)
