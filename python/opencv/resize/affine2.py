@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # アフィン変換で画像配列の回転
-def rotate_affine(src, theta, tx=0, ty=0):
+def rotate_affine(src, theta):
     # 元画像のサイズを取得
     h, w = src.shape[0], src.shape[1]
 
@@ -13,11 +13,12 @@ def rotate_affine(src, theta, tx=0, ty=0):
     # degreeかｒradianに変換
     rd = np.radians(theta)
 
+
     # アフィン変換
     for y in range(0, h):
         for x in range(0, w):
-            xi = (x - tx)*np.cos(rd) - (y - ty)*np.sin(rd) + tx
-            yi = (x - tx)*np.sin(rd) + (y - ty)*np.cos(rd) + ty
+            xi = (x - int(w/2))*np.cos(rd) - (y - int(h/2))*np.sin(rd) + int(w/2)
+            yi = (x - int(w/2))*np.sin(rd) + (y - int(h/2))*np.cos(rd) + int(h/2)
             xi = int(xi)
             yi = int(yi)
 
@@ -35,11 +36,8 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 theta = 45  # 回転角
 
-# 画像の中心座標
-oy, ox = int(gray.shape[0]/2), int(gray.shape[1]/2)
-
 # 方法(NumPy）
-dst = rotate_affine(gray, theta, ox, oy)
+dst = rotate_affine(gray, theta)
 
 # 結果を出力
 cv2.imwrite("C:/github/sample/python/opencv/resize/affine2.png", dst)
