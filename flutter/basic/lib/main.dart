@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 //import 'package:basic/ui/listview_listtitle_page.dart';
 //import 'package:basic/ui/todo1_page.dart';
 //import 'package:basic/ui/json_table1_page.dart';
-import 'package:basic/ui/todo1_page.dart';
-import 'package:basic/ui/todo1_page.dart';
+//import 'package:basic/ui/todo1_page.dart';
+import 'package:basic/ui/padding_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       //home:ListviewListtitlePage(title: 'Test'),
       // home:Todo1Page(title: 'Test'),
       // home:JsonTable1Page(),
-      home:Todo1Page(),
+      //home:PaddingPage(),
+      home:PaddingPage(),
     );
   }
 }
