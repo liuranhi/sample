@@ -14,6 +14,7 @@ class _PaddingPageState extends State<PaddingPage> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        // アプリケーションバーの上の空白
         Container(color: Colors.white, width: double.infinity, height: 100,),
         Expanded(
           child: Scaffold(
@@ -23,8 +24,24 @@ class _PaddingPageState extends State<PaddingPage> {
             body: new Center(
               child: new Text('Hello World'),
             ),
+            // 下部ナビゲーションバーでスクロール
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: 0,
+              items: [
+                new BottomNavigationBarItem(
+                    icon: new Icon(Icons.home),
+                    title: Text("Test")
+                ),
+                new BottomNavigationBarItem(
+                    icon: new Icon(Icons.settings),
+                    title: Text("Test")
+                ),
+              ],
+            ),
           ),
         ),
+        // ナビゲーションバーの下の空白
+        Container(color: Colors.white, width: double.infinity, height: 100,),
       ],
     );
   }
