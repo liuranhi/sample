@@ -12,7 +12,9 @@ t = np.arange(0, N*dt, dt)  # 時間軸
 freq = np.linspace(0, 1.0/dt, N)  # 周波数軸
 
 #t = np.linspace(0, 1, N, endpoint=False)
-f = signal.square(2 * np.pi * fq1 * t)
+f1 = signal.square(2 * np.pi * fq1 * t)
+f2 = 0.2 * signal.square(2 * np.pi * fq2 * t)
+f = f1 + f2
 
 # 高速フーリエ変換（周波数信号に変換）
 F = np.fft.fft(f)
@@ -36,7 +38,6 @@ f2 = np.real(f2*N)
 # グラフ表示
 
 fig = plt.figure(figsize=(10.0, 8.0))
-#plt.figure()
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['font.size'] = 12
 
@@ -75,4 +76,4 @@ plt.ylabel('Amplitude', fontsize=12)
 plt.grid()
 leg = plt.legend(loc=1, fontsize=15)
 leg.get_frame().set_alpha(1)
-plt.savefig('C:/github/sample/python/numpy/fft/lpf/ex2.png')
+plt.savefig('C:/github/sample/python/numpy/fft/lpf/ex3.png')
