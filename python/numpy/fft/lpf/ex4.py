@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import signal
 
 # データのパラメータ
 N = 256            # サンプル数
 dt = 0.01          # サンプリング間隔
-fq1 = 5
+fq1, fq2 = 5, 40    # 周波数
 fc = 20            # カットオフ周波数
 t = np.arange(0, N*dt, dt)  # 時間軸
 freq = np.linspace(0, 1.0/dt, N)  # 周波数軸
 
-#t = np.linspace(0, 1, N, endpoint=False)
-f = signal.square(2 * np.pi * fq1 * t)
+# 時間信号（周波数5の正弦波 + 周波数40の正弦波）の生成
+f = np.sin(2*np.pi*fq1*t) + 0.2 * np.sin(2*np.pi*fq2*t)
+
+# 時間信号の大部分を0にして非周期信号化
+f[0:75] = 0
+f[100::] = 0
 
 # 高速フーリエ変換（周波数信号に変換）
 F = np.fft.fft(f)
@@ -73,4 +76,4 @@ plt.ylabel('Amplitude', fontsize=12)
 plt.grid()
 leg = plt.legend(loc=1, fontsize=15)
 leg.get_frame().set_alpha(1)
-plt.savefig('C:/github/sample/python/numpy/fft/lpf/ex2.png')
+plt.savefig('C:/github/sample/python/numpy/fft/lpf/ex4.png')
