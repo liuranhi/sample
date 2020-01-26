@@ -8,7 +8,7 @@ def mosaic(img, alpha):
     w = img.shape[1]
     h = img.shape[0]
 
-    # 縮小→拡大でモザイク加工
+    # 最近傍法で縮小→拡大することでモザイク加工
     img = cv2.resize(img, (int(w*alpha), int(h*alpha)))
     img = cv2.resize(img, (w, h), interpolation=cv2.INTER_NEAREST)
 
@@ -21,9 +21,7 @@ cascade = cv2.CascadeClassifier(
 
 # 動画の読み込み
 cap = cv2.VideoCapture("C:/github/sample/python/opencv/cascade/input.mp4")
-
-# カメラの読み込み
-#cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture(0) # webカメラ映像を扱う場合
 
 # 動画終了まで繰り返し
 while(cap.isOpened()):
