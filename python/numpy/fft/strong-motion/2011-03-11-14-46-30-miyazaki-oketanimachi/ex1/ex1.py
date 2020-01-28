@@ -6,15 +6,14 @@ import pandas as pd
 # データのパラメータ
 N = 36000            # サンプル数
 dt = 0.01          # サンプリング間隔
-fq1, fq2 = 5, 40    # 周波数
-fc1 = 0.1  # カットオフ周波数1
-fc2 = 0.2  # カットオフ周波数2
+fc1 = 7.0  # カットオフ周波数1[Hz]
+fc2 = 8.0  # カットオフ周波数2[Hz]
 A1, A2 = 20, 5
 t = np.arange(0, N*dt, dt)  # 時間軸
 freq = np.linspace(0, 1.0/dt, N)  # 周波数軸
 
 # CSVのロード
-df = pd.read_csv("C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/data.csv",
+df = pd.read_csv("C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/ex1/data.csv",
                  encoding="UTF-8", skiprows=6)
 
 # 3列目(UD)のデータ（加速度）終値だけを取り出し
@@ -32,7 +31,7 @@ F[0] = F[0]/2
 # 配列Fをコピー
 F2 = F.copy()
 
-# ローパスフィル処理（カットオフ周波数を超える帯域の周波数信号を0にする）
+# バンドパスフィルタ処理（fc1～fc2[Hz]の帯域以外を0にする）
 F2[(freq > fc2)] = 0
 F2[(freq < fc1)] = 0
 
@@ -49,7 +48,7 @@ spectrum_df.set_index("freq", inplace=True)
 spectrum_df["F1"] = np.abs(F)
 spectrum_df["F2"] = np.abs(F2)
 spectrum_df.to_csv(
-    'C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/spectrum.csv')
+    "C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/ex1/spectrum_" + str(fc1) + "_" + str(fc2) + ".csv")
 
 # 時間軸のデータを保存
 amplitude_df = pd.DataFrame({})
@@ -58,7 +57,7 @@ amplitude_df["time"] = t
 amplitude_df["f"] = f
 amplitude_df["f2"] = f2
 amplitude_df.to_csv(
-    'C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/amplitude.csv')
+    "C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/ex1/amplitude_" + str(fc1) + "_" + str(fc2) + ".csv")
 
 
 # グラフ表示
@@ -102,4 +101,4 @@ plt.grid()
 leg = plt.legend(loc=1, fontsize=15)
 leg.get_frame().set_alpha(1)
 plt.savefig(
-    'C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/ex1.png')
+    "C:/github/sample/python/numpy/fft/strong-motion/2011-03-11-14-46-30-miyazaki-oketanimachi/ex1/" + str(fc1) + "_" + str(fc2) + ".png")
