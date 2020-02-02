@@ -2,7 +2,7 @@
 import sqlite3
 
 # データベース開く
-db = sqlite3.connect('sarvant.db')
+db = sqlite3.connect('C:/github/sample/python/sqlite/sarvant.db')
 c = db.cursor()
 
 # テーブル作成
