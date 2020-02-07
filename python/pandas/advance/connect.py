@@ -62,3 +62,18 @@ print(df_concat)
 2020-01-05      50.0     500.0
 2020-01-06      60.0     600.0
 """
+
+df_concat = pd.concat([df1, df2, df3])
+print(df_concat)
+"""
+            currentA  currentB  voltageA  voltageB 
+2020-01-01      10.0       NaN     100.0       NaN 
+2020-01-02      20.0       NaN     200.0       NaN 
+2020-01-03      30.0       NaN     300.0       NaN 
+2020-01-01       NaN      10.0       NaN     100.0 
+2020-01-02       NaN      20.0       NaN     200.0 
+2020-01-03       NaN      30.0       NaN     300.0 
+2020-01-04      40.0       NaN     400.0       NaN 
+2020-01-05      50.0       NaN     500.0       NaN 
+2020-01-06      60.0       NaN     600.0       NaN
+"""
