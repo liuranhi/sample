@@ -99,4 +99,11 @@ print(df_concat)
 2020-01-06      60.0       NaN     600.0       NaN
 """
 
+df_concat = pd.concat([df1, df2, df3], axis=0, join='inner')
+print(df_concat)
+"""
+Empty DataFrame
+Columns: []
+Index: [2020-01-01, 2020-01-02, 2020-01-03, 2020-01-01, 2020-01-02, 2020-01-03, 2020-01-04, 2020-01-05, 2020-01-06]
+"""
 
