@@ -52,6 +52,7 @@ def main():
     ax2.set_ylabel('Amplitude')
     ax2.set_ylim(0, 12.0)
     ax1.legend([p1, p2], ["Abnormality", "Test data"])
+    ax1.grid()
     plt.savefig('C:/github/sample/python/numpy/svd/sample1.png')
 
 
