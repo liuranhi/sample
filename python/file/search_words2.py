@@ -49,7 +49,10 @@ class FilEdit():
     def search_words_infiles(self, filepaths, keyword, ignore_exts=None):
         for filepath in filepaths:
             if os.path.isdir(filepath) == False:
-                self.search_words(filepath, keyword)
+                try:
+                    self.search_words(filepath, keyword)
+                except:
+                    print("File Error:" + filepath)
 
 
 def main():
