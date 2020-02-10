@@ -6,8 +6,8 @@ df1 = pd.DataFrame.from_dict(new_dict1, orient='index').T
 print(df1)
 """
    key1  key2  key3
-0  11.0  13.0  15.0
-1  12.0  14.0   NaN
+0  11.0  21.0  31.0
+1  12.0  22.0   NaN
 """
 
 new_dict2 = {}
