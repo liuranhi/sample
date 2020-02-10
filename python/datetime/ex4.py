@@ -16,12 +16,12 @@ print(dt.minute)  # 34
 print(dt.second)  # 56
 print(type(dt))  # <class 'datetime.datetime'>
 
-# 文字列型 -> datetime型
+# datetime型 -> 文字列型
 str1 = dt.strftime('%y%m%d')
 print(str1)  # 190705
 print(type(str1))  # <class 'str'>
 
-# 文字列型 -> datetime型
+# datetime型 -> 文字列型
 str2 = dt.strftime('%Y%m%d')
 print(str2)  # 20190705
 print(type(str2))  # <class 'str'>
