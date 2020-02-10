@@ -2,10 +2,10 @@
 from datetime import datetime
 
 # 日付文字列
-date_str = '20190705'
+date_str = '2019-07-05'
 
 # 文字列型 -> datetime型
-dt = datetime.strptime(date_str, '%Y%m%d')
+dt = datetime.strptime(date_str, '%Y-%m-%d')
 print(dt)  # 2019-07-05 00:00:00
 print(dt.date())  # 2019-07-05
 print(dt.year)  # 2019
