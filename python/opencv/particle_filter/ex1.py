@@ -2,9 +2,11 @@
 import cv2
 import numpy as np
 
+
 # 追跡対象の色範囲（Hueの値域）
 def is_target(roi):
     return (roi <= 30) | (roi >= 150)
+
 
 # マスクから面積最大ブロブの中心座標を算出
 def max_moment_point(mask):
@@ -16,6 +18,7 @@ def max_moment_point(mask):
     max_index = np.argmax(moment)      # 面積最大のインデックス
     return center[max_index]           # 面積最大のブロブの中心座標
 
+
 # パーティクルの初期化
 def initialize(img, N):
     mask = img.copy()                  # 画像のコピー
@@ -26,9 +29,8 @@ def initialize(img, N):
     ps[:] = [x, y, w]                  # パーティクル用配列に中心座標と尤度をセット
     return ps
 
+
 # 1.リサンプリング(前状態の重みに応じてパーティクルを再選定)
-
-
 def resampling(ps):
     # 累積重みの計算
     ws = ps[:, 2].cumsum()
@@ -43,17 +45,15 @@ def resampling(ps):
 
     return new_ps
 
+
 # 2.推定（パーティクルの位置）
-
-
 def predict_position(ps, var=13.0):
     # 分散に従ってランダムに少し位置をずらす
     ps[:, 0] += np.random.randn((ps.shape[0])) * var
     ps[:, 1] += np.random.randn((ps.shape[0])) * var
 
+
 # 尤度の算出
-
-
 def calc_likelihood(x, y, img, w=30, h=30):
     # 画像から座標(x,y)を中心とする幅w, 高さhの矩形領域の全画素を取得
     x1, y1 = max(0, x-w/2), max(0, y-h/2)
@@ -85,6 +85,7 @@ def observer(ps, img):
     y = (ps[:, 1] * ps[:, 2]).sum()
     # 重み付き平均を返す
     return (x, y) / ps[:, 2].sum()
+
 
 # パーティクルフィルタ
 def particle_filter(ps, img, N=300):
