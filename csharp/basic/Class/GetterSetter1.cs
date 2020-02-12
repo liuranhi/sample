@@ -3,10 +3,10 @@ using System;
 namespace sample1 {
     class Program {
         static void Main (string[] args) {
-            // x = 5 + 1i
+
             Calc calc = new Calc ();
-            calc.SetX (5); // x.re = 5
-            calc.SetY (10); // x.re = 5
+            calc.SetX (5);
+            calc.SetY (10);
 
             Console.Write ("{0} + {1} = {2}\n", calc.GetX (), calc.GetY (), calc.Sum ());
             // 5 + 10 = 15
@@ -21,22 +21,22 @@ namespace sample1 {
         private double y;
         public double z;
 
-        // xを取り出す
+        // xを取り出すアクセサー
         public double GetX () {
             return this.x;
         }
 
-        // xを書き換え
+        // xを書き換えるアクセサー
         public void SetX (double x) {
             this.x = x;
         }
 
-        // yを取り出す
+        // yを取り出すアクセサー
         public double GetY () {
             return this.y;
         }
 
-        // yを書き換え
+        // yを書き換えるアクセサー
         public void SetY (double y) {
             this.y = y;
         }
