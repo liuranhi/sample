@@ -22,7 +22,7 @@ namespace sample1
         // xの書き換え・取り出し（プロパティ）
         public double Y { get; set; } = 10;  // プロパティ初期化子
 
-        // 和を計算(get-only のプロパティはexpression-bodied (本体が式の)形式で記述可能
+        // 和を計算(読み込み専用[getだけ]のプロパティはexpression-bodied (本体が式の)形式で記述可能
         public double Sum => X + Y;
 
     }
