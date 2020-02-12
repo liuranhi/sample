@@ -33,7 +33,7 @@ while(cap.isOpened()):
     cv2.imshow("Mask", mask)
     cv2.imshow("Flame", gray)
     cv2.imshow("Background", bg)
-    time.sleep(0.1)
+    time.sleep(0.03)
     i += 1    # カウントを1増やす
 
     # 背景画像の更新（一定間隔）
