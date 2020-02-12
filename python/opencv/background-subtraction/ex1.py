@@ -7,7 +7,8 @@ i = 0      # カウント変数
 th = 30    # 差分画像の閾値
 
 # 動画ファイルのキャプチャ
-cap = cv2.VideoCapture("C:/github/sample/python/opencv/background-subtraction/input.mp4")
+cap = cv2.VideoCapture(
+    "C:/github/sample/python/opencv/dataset/videos/red_marker.mp4")
 
 # 最初のフレームを背景画像に設定
 ret, bg = cap.read()

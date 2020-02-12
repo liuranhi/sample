@@ -24,7 +24,7 @@ def frame_sub(img1, img2, img3, th):
 
 # 動画ファイルのキャプチャ
 cap = cv2.VideoCapture(
-    "C:/github/sample/python/opencv/background-subtraction/input.mp4")
+    "C:/github/sample/python/opencv/dataset/videos/red_marker.mp4")
     
 # フレームを3枚取得してグレースケール変換
 frame1 = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
@@ -46,7 +46,7 @@ while(cap.isOpened()):
 
     # 待機(0.03sec)
     time.sleep(0.03)
-    
+
     # qキーが押されたら途中終了
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
