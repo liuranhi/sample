@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import cv2
 import numpy as np
+import time
 
 i = 0      # カウント変数
 th = 30    # 差分画像の閾値
 
 # カメラのキャプチャ
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture("C:/github/sample/python/opencv/background-subtraction/input.mp4")
 
 # 最初のフレームを背景画像に設定
 ret, bg = cap.read()
@@ -31,7 +32,8 @@ while(cap.isOpened()):
     # フレームとマスク画像を表示
     cv2.imshow("Mask", mask)
     cv2.imshow("Flame", gray)
-
+    cv2.imshow("Background", bg)
+    time.sleep(0.1)
     i += 1    # カウントを1増やす
 
     # 背景画像の更新（一定間隔）

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
+//import 'package:stat/stat.dart';
 
 class TestPage extends StatefulWidget {
   TestPage({Key key, this.title}) : super(key: key);
@@ -14,7 +15,12 @@ class TestPage extends StatefulWidget {
 
 class _TestPageState extends State<TestPage> {
   int _currentIndex = 0; // currentIndexにデフォルト値を与えないとコンパイルエラーにな
+  //var stat = new Stat();
+  //var list = [1, 2, 3, 4, 5];
 
+  // 合計の計算
+  //num sum_value = stat.sum(list);
+  //print(sum_value); // 15
   @override
   Widget build(BuildContext context) {
     //test();
