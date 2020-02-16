@@ -14,13 +14,29 @@ ESP32を搭載しているため、Arduino環境での開発もできます。
 
 特徴③にあるとおり、M5Stackは開発環境がいくつかあります。それぞれの環境構築方法については下記事でそれぞれ紹介しています。（<strong>ESP32初心者の方はArduino IDEがおすすめ</strong>）
 
+#### Arduino IDEのインストール
 ① Arduino IDEをPCにインストールします。
 
--|インストー方法は下記事で詳しく紹介しています。
---|--
-1|<a href="https://algorithm.joho.info/arduino/ide-install-download/">【Arduino】IDEのインストール＆ダウンロード</a>
+以下のリンクからArduino公式サイトのダウンロードページを開きます。
+<a href="http://arduino.cc/en/Main/Software">http://arduino.cc/en/Main/Software</a>
 
-② デバイスドライバを公式ページ(<a href="https://m5stack.com/pages/download">https://m5stack.com/pages/download</a>)からダウンロードし、インストールします。
+② [Windows app Requires Win8.1 or 10]をクリックします。
+<img src="https://algorithm.joho.info/wp-content/uploads/2017/01/arduino-install-1.png" width="450px" />
+
+③ [JUST DOWNLOAD]をクリックします。
+<img src="https://algorithm.joho.info/wp-content/uploads/2017/01/arduino-install-2.png" width="450px" />
+
+④ [入手]をクリックします。
+<img src="https://algorithm.joho.info/wp-content/uploads/2017/01/arduino-install-3.png" width="450px" />
+
+⑤ [Microsoft Storeを開く]という確認ダイアログが表示されるのでクリックします。
+<img src="https://algorithm.joho.info/wp-content/uploads/2017/01/arduino-install-5.png" width="450px" />
+
+⑥ Microsoft Storeアプリが開き、Arduino IDEのインストール画面が表示されるので[インストール]をクリックします。
+<img src="https://algorithm.joho.info/wp-content/uploads/2017/01/arduino-install-6.png" width="450px" />
+
+#### M5stackのドライバ等をインストール
+① デバイスドライバを公式ページ(<a href="https://m5stack.com/pages/download">https://m5stack.com/pages/download</a>)からダウンロードし、インストールします。
 ※お使いのPCの環境にあったものをクリックしてダウンロード
 <img src="https://algorithm.joho.info/wp-content/uploads/2019/08/m5stack-arduino-1.png" width="450px" />
 
@@ -60,7 +76,11 @@ Windowsの場合、中にあるインストーラのうち、お使いのWindows
 <img src="https://algorithm.joho.info/wp-content/uploads/2019/08/m5stack-arduino-9.png" width="450px" />
 これで環境構築作業は完了です。
 
-<h2>【動作確認】サンプルスケッチ実行</h2>
+#### 解説動画
+本節の内容はYoutubeでも解説しているので、よろしければそちらもご参考にしてください。
+(https://www.youtube.com/watch?v=baYnmqDoIMM)[https://www.youtube.com/watch?v=baYnmqDoIMM]
+
+## 【動作確認】サンプルスケッチ実行
 M5Stackのサンプルプログラム（サンプルスケッチ）を実行し、動作確認をしてみます。 
 
 ① M5StackをPCにUSB接続します。次に、デバイスマネージャを開き、CP210x USB to UART Bridgeのポート番号を確認します。
@@ -90,6 +110,83 @@ COMポート|②で確認したCOMポート
 ⑦ [→]ボタンをクリックすると、コンパイルとM5Stackへの書き込みが始まるので終わるまで待ちます。
 書き込みが終わると、M5StackのLCDに「Hello World!」と表示されます。
 <img src="https://algorithm.joho.info/wp-content/uploads/2019/08/m5stack-arduino-14.jpg" width="450px" />
+
+
+## BMP280 ENV ユニットで温度・湿度・気圧測定</h2>
+BMP280 ENV Unit（amazonで1000円程度で入手可能）を使うことで簡単に温度・湿度・気圧を測定できます。
+
+#### 前準備
+① Arduino IDEのメニューから[ファイル] -> [設定] -> [追加のボードマネージャURL]に以下のURLを追加します。
+
+```
+https://adafruit.github.io/arduino-board-index/package_adafruit_index.json 
+```
+
+② メニューから[スケッチ] -> [ライブラリをインクルード] -> [ライブラリを管理]を選択します。
+
+③ ダイアログで[Adafruit BMP280]と検索し、「Adafruit BMP280 Library」をインストールします。
+
+これで事前準備は完了です。
+
+#### サンプルコード
+MP280 ENV UnitをM5StackのGroveコネクタに接続し、プロジェクト（https://github.com/nishizumi-lab/sample/tree/master/m5stack/bmp280/arduino/bmp280）をダウンロードしてArduino IDEで開いてコンパイルし、M5Stack書き込めば温度・湿度・気圧測定ができます。
+
+（※↓後日、GIFかJPGに置き換えます）
+<iframe width="400" height="265" src="https://www.youtube.com/embed/56TE5kLQk9E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+```arduino bmp.ino
+#include &lt;M5Stack.h&gt;
+#include &quot;DHT12.h&quot;
+#include &lt;Wire.h&gt; //The DHT12 uses I2C comunication.
+#include &quot;Adafruit_Sensor.h&quot;
+#include &lt;Adafruit_BMP280.h&gt;
+
+DHT12 dht12; //Preset scale CELSIUS and ID 0x5c.
+Adafruit_BMP280 bme;
+
+void setup() {
+    M5.begin();
+    Wire.begin();
+
+    M5.Lcd.setBrightness(10);
+
+    Serial.println(F(&quot;ENV Unit(DHT12 and BMP280) test...&quot;));
+
+    while (!bme.begin(0x76)){  
+      Serial.println(&quot;Could not find a valid BMP280 sensor, check wiring!&quot;);
+      M5.Lcd.println(&quot;Could not find a valid BMP280 sensor, check wiring!&quot;);
+    }
+    // LCD初期化
+    M5.Lcd.clear(BLACK);
+    M5.Lcd.println(&quot;ENV Unit test...&quot;);
+}
+
+void loop() {
+    // 温度の取得
+    float tmp = dht12.readTemperature();
+
+    // 湿度の取得
+    float hum = dht12.readHumidity();
+
+    // 気圧の取得[hPa = Pa * 0.01]
+    float pressure = bme.readPressure() * 0.01;
+
+    // 温度、湿度、気圧をシリアル通信で送信
+    Serial.printf("Temperatura: %2.2f*C  Humedad: %0.2f%%  Pressure: %0.2fPa\r\n", tmp, hum, pressure);
+
+    // LCDに温度、湿度、気圧を表示
+    M5.Lcd.setCursor(0, 0); // カーソル
+    M5.Lcd.setTextColor(WHITE, BLACK);  // 色
+    M5.Lcd.setTextSize(4);  // 文字サイズ
+    M5.Lcd.printf("Temp:%2.1f \nHumi:%2.0f%% \nPres:%2.0fhPa \n", tmp, hum, pressure);
+
+    delay(100);
+} ```
+
+#### 解説動画
+本節の内容はYoutubeでも解説しているので、よろしければそちらもご参考にしてください。
+（YoutubeのURL：後日撮影します）
 
 ## 無線LANルーター（Wi-Fi）に接続
 まず、指定した「SSID」「パスワード」のwifiに接続してみます。
