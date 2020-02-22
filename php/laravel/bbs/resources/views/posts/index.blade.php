@@ -1,10 +1,12 @@
 @extends('layout')
 
+<!-- 投稿一覧を取得して表示 -->
+
 @section('content')
     <div class="container mt-4">
     <div class="mb-4">
     <a href="{{ route('posts.create') }}" class="btn btn-primary">
-        投稿を新規作成する
+        投稿の新規作成
     </a>
 </div>
         @foreach ($posts as $post)
@@ -14,6 +16,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
+                        <!-- 投稿の冒頭（200文字）を取得し改行あり表示 -->
                         {!! nl2br(e(Str::limit($post->body, 200))) !!}
                     </p>
                     <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
@@ -27,7 +30,7 @@
 
                     @if ($post->comments->count())
                         <span class="badge badge-primary">
-                            コメント {{ $post->comments->count() }}件
+                            コメント数 {{ $post->comments->count() }}
                         </span>
                     @endif
                 </div>
