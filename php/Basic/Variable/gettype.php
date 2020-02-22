@@ -7,4 +7,8 @@ print gettype($servant);
 print "\n";
 print gettype($atk);
 
+// string
+// integer
+-->
+
 ?>

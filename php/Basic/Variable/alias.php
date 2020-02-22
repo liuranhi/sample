@@ -4,6 +4,6 @@ $janne = 'ジャンヌオルタ';
 
 $servant =& $janne;
 
-print $servant;
+print $servant; // ジャンヌオルタ
 
 ?>
