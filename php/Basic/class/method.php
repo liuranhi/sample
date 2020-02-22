@@ -18,4 +18,4 @@ class Fubuki{
 $fubuki = new Fubuki();
 
 // 表示
-$fubuki->printName();
+$fubuki->printName(); // 艦名

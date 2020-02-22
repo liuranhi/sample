@@ -25,3 +25,9 @@ print"$fubuki->name\n";
 print"$fubuki->arm1\n";
 print"$fubuki->arm2\n";
 print"$fubuki->arm3";
+
+/*
+吹雪
+12.7cm連装砲
+61cm三連装魚雷
+/*
