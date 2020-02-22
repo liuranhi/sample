@@ -7,6 +7,7 @@ use App\Post;
 
 class PostsController extends Controller
 {
+    // 投稿を作成日時の降順で取得し、posts.indexにデータを渡してビューを生成
     public function index()
     {
         $posts = Post::with(['comments'])->orderBy('created_at', 'desc')->paginate(10);
