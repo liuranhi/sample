@@ -10,4 +10,9 @@ foreach ($ships as $key => $name) {
     echo "$key:$name\n";
 }
 
+/*
+se:Yamato
+ku:Fubuki
+ko:Akagi
+*/
 ?>

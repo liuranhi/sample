@@ -4,6 +4,6 @@
 $ships = array('吹雪改二', '比叡改二', '大鳳');
 array_push($ships, '榛名');
 
-print $ships[3];
+print $ships[3]; // 榛名
 
 ?>

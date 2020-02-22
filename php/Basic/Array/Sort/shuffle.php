@@ -9,4 +9,10 @@ foreach ($datas as $data) {
     echo "$data \n";
 }
 
+/*
+22 
+65 
+51 
+100
+*/
 ?>
