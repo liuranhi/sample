@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!--
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+ -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+        <title>西暦和暦変換</title>
+    </head>
+    <body onload="init();">
+<form name="toSeireki">
+<select id="nengo" name="nengo">
+    <option value="平成">平成</option>
+</select>
+
+<select id="nengoYear" name="nengoYear">
+    <option value=1>1年</option>
+</select>
+
+<input type="button"  id="toWarekiButton" value="西暦変換" onclick="ToSeireki();"/>
+</form>
+
+<br>
+ <!-- 西暦→年号 -->
+<form name="toWareki">
+<select id="seireki" name="seireki">
+    <option value="西暦">西暦</option>
+</select>
+<select id="seirekiYear" name="seirekiYear">
+    <option value=1931>1931年</option>
+</select>
+
+<input type="button" id="toWarekiButton" value="和暦変換" onclick="ToWareki();"/>
+</form>
+ <br>
+ 
+<form name="result">
+<textarea  id="result" name = "box" value="ここに結果が表示されます。"/></textarea>
+</form>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>	
+    </body>
+</html>

@@ -13,7 +13,7 @@ session_id('fatego');
 // セッションIDの取得
 $id = session_id();
 // セッション名の表示
-print "セッションID：$id";
+print "セッションID：$id"; // セッションID：fatego 
 
 ?>
 </head>

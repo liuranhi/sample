@@ -15,8 +15,8 @@ session_regenerate_id(True);
 // 新しいID取得
 $id2 = session_id();
 // セッションIDの表示
-print "旧ID：$id1<br>";
-print "新ID：$id2";
+print "旧ID：$id1<br>"; // 旧ID：80btpbli6gakr19bogbqfhol23
+print "新ID：$id2"; // 新ID：brf85v2ju91qe88mtgbn314qg5 
 
 ?>
 </head>
