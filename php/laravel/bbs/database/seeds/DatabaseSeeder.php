@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        // PostsTableSeeder（投稿のテストデータ登録）を呼び出して、シーディングコマンドで実行されるようにする
         $this->call(PostsTableSeeder::class);
     }
 }

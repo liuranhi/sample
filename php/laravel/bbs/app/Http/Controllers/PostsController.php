@@ -14,7 +14,11 @@ class PostsController extends Controller
         // 投稿のリストを取得した時に、紐づくコメントを読み込む(取得した投稿数だけコメント数をカウントさせない:n+1問題)
         // Laravelではwithメソッドで解決可能
         $posts = Post::with(['comments'])->orderBy('created_at', 'desc')->paginate(10);
-        return view('posts.index', ['posts' => $posts]);
+
+        // コントローラのメソッドでビューを返す
+        // 第一引数にビューの名前、第二引数にビューに渡したい値（連想配列）を設定
+        return view('posts.index', compact('posts'));
+        // compact('posts') は ['posts' => $posts]);と同じ
     }
 
     // 投稿画面用：投稿を追加した後は、トップページにリダイレクト
@@ -38,6 +42,7 @@ class PostsController extends Controller
     // 投稿の詳細表示
     public function show($post_id)
     {
+        // DBよりURIパラメータと同じIDを持つPostの情報を取得
         $post = Post::findOrFail($post_id);
 
         return view('posts.show', [
@@ -48,6 +53,7 @@ class PostsController extends Controller
     // 編集用
     public function edit($post_id)
     {
+        // DBよりURIパラメータと同じIDを持つPostの情報を取得
         $post = Post::findOrFail($post_id);
 
         return view('posts.edit', [
@@ -63,6 +69,7 @@ class PostsController extends Controller
             'body' => 'required|max:2000',
         ]);
 
+        // DBよりURIパラメータと同じIDを持つPostの情報を取得
         $post = Post::findOrFail($post_id);
         $post->fill($params)->save();
 
@@ -72,6 +79,7 @@ class PostsController extends Controller
     // 投稿削除
     public function destroy($post_id)
     {
+        // DBよりURIパラメータと同じIDを持つPostの情報を取得
         $post = Post::findOrFail($post_id);
 
         \DB::transaction(function () use ($post) {

@@ -12,7 +12,10 @@
 */
 // インデックスページ用のルーティング
 Route::get('/', 'PostsController@index')->name('top');
+
 // 投稿表示用のルーティング
+
 Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
+
 // コメント投稿用のルーティング
 Route::resource('comments', 'CommentsController', ['only' => ['store']]);

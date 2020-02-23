@@ -13,10 +13,11 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Post::class, 50)
+        // Factoryのテストデータを登録（投稿は23件、コメントは各投稿あたり4件）登録
+        factory(Post::class, 23)
             ->create()
             ->each(function ($post) {
-                $comments = factory(App\Comment::class, 2)->make();
+                $comments = factory(App\Comment::class, 4)->make();
                 $post->comments()->saveMany($comments);
             });
     }
