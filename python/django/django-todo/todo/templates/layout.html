@@ -1,0 +1,16 @@
+<!--
+{％ block ％} や extendsで共有テンプレート（複数のテンプレートで共有するレイアウト）を作成します。
+子テンプレート(todo_list.html)などで定義したtitleやcontentというブロックを、親テンプレート(base.html)が参照して表示
+-->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

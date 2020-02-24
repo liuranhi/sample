@@ -1,5 +1,8 @@
 from django.db import models 
- 
+
+"""
+ToDOモデルは、ToDo(todo)、作成日時(created_at)、更新日時(updated_at)の属性を持つ
+"""
  
 class Todo(models.Model): 
     todo = models.CharField('ToDo', max_length=100, blank=False)

@@ -97,12 +97,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # デフォルトの言語を指定
-# ★下記の場合、日本語と英語を選択
+# ★日本語と英語を選択
 # LANGUAGE_CODE = 'en-us'
-LANGUAGES = [
-    ('ja', _('Japanese')),
-    ('en', _('English')),
-]
+LANGUAGE_CODE = 'ja-JP'
 
 # タイムゾーン
 # TIME_ZONE = 'UTC'
