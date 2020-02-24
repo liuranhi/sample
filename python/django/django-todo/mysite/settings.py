@@ -36,9 +36,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ルートディレクトリの指定（モジュール）
+# ルートディレクトリの設定（モジュールでどの設定を使うか指定）
+# 下記の場合、./mysite/urls.py を指定
 ROOT_URLCONF = 'mysite.urls'
 
+# テンプレートに関する定義
+# BACKEND:テンプレートエンジン
+# DIRS:テンプレートを探す対象のフォルダリスト
+# APP_DIRS:アプリケーションフォルダ配下を探すか否かのフラグ
+# OPTIONS:各種オプション情報
+# context_processors:テンプレートで参照可能な変数を生成するプロセッサ群
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -55,12 +62,14 @@ TEMPLATES = [
     },
 ]
 
+# WSGI のアプリケーションを指定
+# 下記の場合は ./mysite/wsgi.py のapplication を指定
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+# データベースに関する定義
+# SQLite3, MySQL(MariaDB), PostgreSQL, Oracle など利用可能
+# 下記の場合、sqlite3を選択し、./db.sqlite3に生成
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -69,9 +78,8 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
-
+# パスワードのバリデーションルール(禁止ルール)を指定
+# 下記の場合、ユーザ名と似たパスワード、パスワード長、よくあるパスワード、数値のみのパスワードをチェック
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -88,23 +96,27 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.1/topics/i18n/
-
+# デフォルトの言語を指定
+# ★下記の場合、日本語と英語を選択
 # LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'ja'
+LANGUAGES = [
+    ('ja', _('Japanese')),
+    ('en', _('English')),
+]
 
+# タイムゾーン
 # TIME_ZONE = 'UTC'
-TIME_ZONE = 'Asia/Tokyo'
+TIME_ZONE = 'Asia/Tokyo' # ★タイムゾーンを東京に変更
 
+# 多言語化機能を有効にするか否かを指定(I18N:internationalisation の略)
 USE_I18N = True
 
+# 日付フォーマットなどのローカライゼーション機能を有効にするか否かを指定(L10N:localization の略)
 USE_L10N = True
 
+# タイムゾーン変換機能を有効にするか否かを指定
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+# スタティックファイル (CSS, JavaScript, Images)の URL を指定
 STATIC_URL = '/static/'
