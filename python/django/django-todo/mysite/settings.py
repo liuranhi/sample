@@ -1,33 +1,31 @@
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# プロジェクト内にパスを作成
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# 秘密鍵
 SECRET_KEY = '5^ig7!vuiy&xti4uh9y&1-zxn8+guo0ex5(fh&a*7ghgq9z=a%'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# デバッグモードの有効化（リリース時はデバッグをオフにする）
 DEBUG = True
 
-# ALLOWED_HOSTS = []
+# リリース時は公開するサイトのドメイン名（*.example.com）を入れる
 ALLOWED_HOSTS = ['*']
 
-# Application definition
-
+# 利用するアプリケーションの定義
+# データベースのマイグレーションファイル作成の際などに利用
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin', 
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'todo.apps.TodoConfig', #todoアプリケーションの組み込み
+    'django.contrib.sessions', 
+    'django.contrib.messages', 
+    'django.contrib.staticfiles',  # ↑デフォルトのアプリ
+    'todo.apps.TodoConfig', # ★ 今回は新たにtodoアプリを作成して追加するので、ここに追記
 ]
 
+# 有効化するMiddlewareクラス（リクエスト/レスポンス処理にhookを加えるための仕組み）
+# HTTP 要求を受け取ったり、HTTP 応答を返却する際に、ここで定義したミドルウェアを順次実行
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -38,6 +36,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# ルートディレクトリの指定（モジュール）
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
