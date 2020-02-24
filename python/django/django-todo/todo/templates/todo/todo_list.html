@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1>ToDoの一覧</h1>
-<a href="{% url 'todo:create' %}">追加</a>
-<table>
+    <a class="btn btn-primary" role="button" href="{% url 'todo:create' %}">新規作成</a>
+
+<table class="table table-dark">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -21,8 +21,8 @@
       <td>{{ item.created_at }}</td>
       <td>{{ item.updated_at }}</td>
       <td>
-        <a href="{% url 'todo:update' pk=item.id %}">修正</a>
-        <a href="{% url 'todo:delete' pk=item.id %}">削除</a>
+        <a class="btn btn-primary" role="button"  href="{% url 'todo:update' pk=item.id %}">編集</a>
+        <a class="btn btn-danger" role="button"  href="{% url 'todo:delete' pk=item.id %}">削除</a>
       </td>
     </tr>
     {% endfor %}
