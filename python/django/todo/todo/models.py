@@ -3,10 +3,10 @@ from django.db import models
 class Todo(models.Model):
     
     # タイトル（100文字までで、空白は許可しない）
-    todo = models.CharField('ToDo', max_length=100, blank=False)
-
+    #todo = models.CharField('タイトル', max_length=100, blank=False)
+    title = models.CharField('タイトル', max_length=100, blank=False)
     # 本文
-    #text = models.TextField()
+    text = models.TextField('本文')
 
     # 投稿日時
     # DateTimeFieldは時間を保存するフィールドクラス

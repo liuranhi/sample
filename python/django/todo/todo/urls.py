@@ -28,4 +28,8 @@ urlpatterns = [
 name引数：テンプレート内で指定するURLの名称
 （省略するとview関数の名前がそのまま利用される）
 
+【include関数】
+path関数の第二引数にview関数の代わりに指定する事でURLを連結
+path("", include("todo.urls"))
+※上の例ではtodo.urls.pyで設定したURLを連結
 """

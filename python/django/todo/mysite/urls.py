@@ -14,7 +14,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 
-    path('index/', include('mysite.urls', namespace='mysite')),
+    #path('index/', include('mysite.urls', namespace='mysite')),
 ]
 
 

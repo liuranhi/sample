@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <a class="btn btn-primary" role="button" href="{% url 'todo:create' %}">新規作成</a>
@@ -7,9 +7,9 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">ToDo</th>
-      <th scope="col">作成日時</th>
-      <th scope="col">更新日時</th>
+      <th scope="col">タイトル</th>
+      <th scope="col">投稿日時</th>
+      <th scope="col">最終更新日時</th>
       <th scope="col">操作</th>
     </tr>
   </thead>
@@ -17,12 +17,12 @@
     {% for item in object_list %}
     <tr>
       <td scope="row"><a href="{% url 'todo:detail' pk=item.id %}">{{ item.id }}</a></td>
-      <td>{{ item.todo }}</td>
+      <td><a href="{% url 'todo:detail' pk=item.id %}">{{ item.title }}</a></td>
       <td>{{ item.created_at }}</td>
       <td>{{ item.updated_at }}</td>
       <td>
-        <a class="btn btn-primary" role="button"  href="{% url 'todo:update' pk=item.id %}">編集</a>
-        <a class="btn btn-danger" role="button"  href="{% url 'todo:delete' pk=item.id %}">削除</a>
+        <a class="btn btn-danger" role="button"  href="{% url 'todo:update' pk=item.id %}">編集</a>
+        <a class="btn btn-primary" role="button"  href="{% url 'todo:delete' pk=item.id %}">削除</a>
       </td>
     </tr>
     {% endfor %}
