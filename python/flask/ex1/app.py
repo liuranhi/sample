@@ -6,7 +6,7 @@ import os
 # 自身の名称を app という名前でインスタンス化する
 app = Flask(__name__)
 
-# index にアクセスしたときの処理
+# index にアクセスされた場合の処理
 @app.route('/')
 def index():
     title = "ようこそ"
@@ -15,7 +15,7 @@ def index():
     return render_template('index.html',
                            message=message, title=title)
 
-# /post にアクセスしたときの処理
+# /post にアクセスされた場合の処理
 @app.route('/post', methods=['GET', 'POST'])
 def post():
     title = "いらっしゃい"
@@ -26,7 +26,7 @@ def post():
         return render_template('index.html',
                                name=name, title=title)
     else:
-        # エラーなどでリダイレクトしたい場合はこんな感じで
+        # エラーなどでリダイレクトしたい場合
         return redirect(url_for('index'))
 
 
