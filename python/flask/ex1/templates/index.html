@@ -1,24 +1,94 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class="form" class="bg-dark text-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" class="bg-dark text-white">
-                <p class="bg-dark text-white">
-                    {% if name %}
-                    こんにちは {{ name }} さん
-                    {% else %}
-                    {{ message }}
-                    {% endif %}
-                </p>
-                <form action="/post" method="post" class="form-inline">
-                    <label for="name" class="bg-dark text-white">名前</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                    <button type="submit" class="btn btn-success">送信する</button>
-                </form>
-            </div>
-        </div>
+<h2>入力画面</h2>
+<form action="/post" method="post" class="form-inline">
+    <div class="form-group">
+        <label for="target_voltage" class="bg-dark text-white">試験電圧[V]</label>
+        <input type="text" class="form-control" id="target_voltage" name="input" value="600" placeholder="例：20">
     </div>
-</div>
+    <div class="form-group">
+        <label for="target_current" class="bg-dark text-white">試験電流[A]</label>
+        <input type="text" class="form-control" id="target_current" name="input" value="5000" placeholder="例：20">
+    </div>
+    <div class="form-group">
+        <label for="power_num" class="bg-dark text-white">電源数[S]</label>
+        <input type="text" class="form-control" id="power_num" name="input" value="8" placeholder="例：20">
+    </div>
+    <div class="form-group">
+        <label for="power_max_voltage" class="bg-dark text-white">電源1つの最大電圧[V]</label>
+        <input type="text" class="form-control" id="power_max_voltage" name="input" value="121.6" placeholder="例：1">
+    </div>
+    <div class="form-group">
+        <label for="power_min_voltage" class="bg-dark text-white">電源1つの最小電圧[V]</label>
+        <input type="text" class="form-control" id="power_min_voltage" name="input" value="70.4" placeholder="例：1">
+    </div>
+    <div class="form-group">
+        <label for="power_resistance" class="bg-dark text-white">電源1つの抵抗[mΩ]</label>
+        <input type="text" class="form-control" id="power_resistance" name="input" value="22" placeholder="例：1">
+    </div>
+    <div class="form-group">
+        <label for="test_resistance" class="bg-dark text-white">試験体の抵抗[mΩ]</label>
+        <input type="text" class="form-control" id="test_resistance" name="input" value="0" placeholder="例：1">
+    </div>
+    <div class="form-group">
+        <label for="resistances" class="bg-dark text-white">外部短絡抵抗[mΩ]</label>
+        <input type="text" class="form-control" id="resistances" name="input"
+            value="1, 2, 3, 4, 5, 6, 7, 16, 17, 18, 19, 20, 21, 22, 23, 29, 30, 31, 32, 33, 34, 35, 36, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 67, 68, 69, 70, 71, 72, 73, 79, 80, 81, 82, 83, 84, 85, 86, 95, 96, 97, 98, 99, 100, 101, 102"
+            placeholder="例：1,10,100">
+    </div>
+    <div class="form-group">
+        <label for="line_resistance" class="bg-dark text-white">配線抵抗[mΩ]</label>
+        <input type="text" class="form-control" id="line_resistance" name="input" value="3" placeholder="例：1">
+    </div>
+    <button type="submit" class="btn btn-success">計算する</button>
+</form>
+
+{% if voltage %}
+{{ voltage }}
+<h2>試験電流条件が一番近い試験構成</h2>
+<table class="table table-dark">
+    <tbody>
+        {%- for i in ierror_min_index %}
+        <tr>
+            <td>{{ i|e }}</td>
+            <td> {{ ierror_min_values[loop.index0]|e }}</td>
+        </tr>
+        {%- endfor %}
+    </tbody>
+</table>
+
+<h2>試験電圧条件が一番近い試験構成</h2>
+<table class="table table-dark">
+    <tbody>
+        {%- for i in verror_min_index %}
+        <tr>
+            <td>{{ i|e }}</td>
+            <td> {{ verror_min_values[loop.index0]|e }}</td>
+        </tr>
+        {%- endfor %}
+    </tbody>
+</table>
+
+<h2>条件を満たす試験構成一覧</h2>
+<table class="table table-dark">
+
+    <thead>
+        <tr>
+            <th></th>{%- for i in result_columns %}<th>{{ i|e }}</th>{%- endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {%- for i in result_values %}
+        <tr>
+            <th>{{ result_index[loop.index0]|e }}</th>{% for j in i %}<td>{{ j|e }}</td>{% endfor %}
+        </tr>
+        {%- endfor %}
+    </tbody>
+</table>
+{{ierror_mins}}
+
+{% else %}
+{{ message }}
+{% endif %}
+
 {% endblock %}
