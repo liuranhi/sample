@@ -53,4 +53,4 @@ img = cv2.imread("C:/github/sample/python/opencv/sample_data/input.png")
 dst = pixel_art(img, 0.5, 4)
     
 # 結果を出力
-cv2.imwrite("C:/github/sample/python/opencv/dot/dot1.png", dst)
+cv2.imwrite("C:/github/sample/python/opencv/pixel_art/dot1.png", dst)
